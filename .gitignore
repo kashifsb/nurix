@@ -1,0 +1,24 @@
+# Binaries
+nurix
+nurix-linux-*
+nurix-darwin-*
+
+# Test artifacts
+coverage.out
+coverage.html
+
+# Go
+*.exe
+*.test
+*.prof
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
