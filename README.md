@@ -39,9 +39,9 @@ Instead of manually editing your Caddyfile, you register domains and DNS records
   - [Generated Caddyfile](#generated-caddyfile)
   - [Database Schema](#database-schema)
     - [domains](#domains)
-    - [dns\_records](#dns_records)
+    - [dns_records](#dns_records)
     - [changelog](#changelog)
-    - [schema\_migrations](#schema_migrations)
+    - [schema_migrations](#schema_migrations)
   - [Validation Rules](#validation-rules)
   - [Audit Trail](#audit-trail)
   - [Security](#security)
@@ -328,14 +328,14 @@ nurix set config \
   --dbname='nurix'
 ```
 
-| Flag | Required | Description |
-|------|----------|-------------|
-| `--caddyfile-path` | ✅ | Full path to the Caddyfile |
-| `--dbhost` | ✅ | PostgreSQL host |
-| `--dbport` | ✅ | PostgreSQL port |
-| `--dbuser` | ✅ | PostgreSQL username |
-| `--dbpassword` | ✅ | PostgreSQL password |
-| `--dbname` | ✅ | PostgreSQL database name |
+| Flag               | Required | Description                |
+| ------------------ | -------- | -------------------------- |
+| `--caddyfile-path` | ✅       | Full path to the Caddyfile |
+| `--dbhost`         | ✅       | PostgreSQL host            |
+| `--dbport`         | ✅       | PostgreSQL port            |
+| `--dbuser`         | ✅       | PostgreSQL username        |
+| `--dbpassword`     | ✅       | PostgreSQL password        |
+| `--dbname`         | ✅       | PostgreSQL database name   |
 
 ---
 
@@ -362,11 +362,11 @@ Register a new domain.
 nurix domain add --domain example.com --provider hostinger --expiry 2027-06-15
 ```
 
-| Flag | Required | Description |
-|------|----------|-------------|
-| `--domain` | ✅ | Domain name (e.g., `example.com`) |
-| `--provider` | ❌ | Domain registrar (e.g., `hostinger`, `namecheap`) |
-| `--expiry` | ✅ | Expiry date in `YYYY-MM-DD` format |
+| Flag         | Required | Description                                       |
+| ------------ | -------- | ------------------------------------------------- |
+| `--domain`   | ✅       | Domain name (e.g., `example.com`)                 |
+| `--provider` | ❌       | Domain registrar (e.g., `hostinger`, `namecheap`) |
+| `--expiry`   | ✅       | Expiry date in `YYYY-MM-DD` format                |
 
 ---
 
@@ -380,11 +380,11 @@ nurix domain update --domain example.com --provider cloudflare
 nurix domain update --domain example.com --provider cloudflare --expiry 2029-01-01
 ```
 
-| Flag | Required | Description |
-|------|----------|-------------|
-| `--domain` | ✅ | Domain to update |
-| `--provider` | ❌ | New provider name |
-| `--expiry` | ❌ | New expiry date (`YYYY-MM-DD`) |
+| Flag         | Required | Description                    |
+| ------------ | -------- | ------------------------------ |
+| `--domain`   | ✅       | Domain to update               |
+| `--provider` | ❌       | New provider name              |
+| `--expiry`   | ❌       | New expiry date (`YYYY-MM-DD`) |
 
 At least one of `--provider` or `--expiry` must be provided.
 
@@ -398,9 +398,9 @@ Remove a registered domain.
 nurix domain remove --domain example.com
 ```
 
-| Flag | Required | Description |
-|------|----------|-------------|
-| `--domain` | ✅ | Domain to remove |
+| Flag       | Required | Description      |
+| ---------- | -------- | ---------------- |
+| `--domain` | ✅       | Domain to remove |
 
 > ⚠️ **Blocked** if the domain still has DNS records. Remove all DNS records first.
 
@@ -415,9 +415,9 @@ nurix domain search all
 nurix domain search all --domain example
 ```
 
-| Flag | Required | Description |
-|------|----------|-------------|
-| `--domain` | ❌ | Filter by domain name (partial match) |
+| Flag       | Required | Description                           |
+| ---------- | -------- | ------------------------------------- |
+| `--domain` | ❌       | Filter by domain name (partial match) |
 
 ---
 
@@ -429,10 +429,10 @@ Add a new reverse proxy record.
 nurix dns add --owner app.example.com --target localhost:8080
 ```
 
-| Flag | Required | Description |
-|------|----------|-------------|
-| `--owner` | ✅ | Domain or subdomain (e.g., `app.example.com`) |
-| `--target` | ✅ | Upstream target (e.g., `localhost:8080`) |
+| Flag       | Required | Description                                   |
+| ---------- | -------- | --------------------------------------------- |
+| `--owner`  | ✅       | Domain or subdomain (e.g., `app.example.com`) |
+| `--target` | ✅       | Upstream target (e.g., `localhost:8080`)      |
 
 > ⚠️ **Blocked** if the parent domain is not registered or has expired.
 
@@ -446,10 +446,10 @@ Update the target of an existing DNS record.
 nurix dns update --owner app.example.com --target localhost:8443
 ```
 
-| Flag | Required | Description |
-|------|----------|-------------|
-| `--owner` | ✅ | Domain/subdomain to update |
-| `--target` | ✅ | New upstream target |
+| Flag       | Required | Description                |
+| ---------- | -------- | -------------------------- |
+| `--owner`  | ✅       | Domain/subdomain to update |
+| `--target` | ✅       | New upstream target        |
 
 > ⚠️ **Blocked** if the parent domain has expired. You can still remove the record.
 
@@ -463,9 +463,9 @@ Remove a DNS record.
 nurix dns remove --owner app.example.com
 ```
 
-| Flag | Required | Description |
-|------|----------|-------------|
-| `--owner` | ✅ | Domain/subdomain to remove |
+| Flag      | Required | Description                |
+| --------- | -------- | -------------------------- |
+| `--owner` | ✅       | Domain/subdomain to remove |
 
 > ✅ Works even if the parent domain is expired — you can always clean up.
 
@@ -482,10 +482,10 @@ nurix dns search all --target localhost:8080
 nurix dns search all --owner example.com --target localhost:8080
 ```
 
-| Flag | Required | Description |
-|------|----------|-------------|
-| `--owner` | ❌ | Filter by owner (partial match) |
-| `--target` | ❌ | Filter by target (partial match) |
+| Flag       | Required | Description                      |
+| ---------- | -------- | -------------------------------- |
+| `--owner`  | ❌       | Filter by owner (partial match)  |
+| `--target` | ❌       | Filter by target (partial match) |
 
 ---
 
@@ -537,19 +537,6 @@ Nurix generates a clean, organized Caddyfile with banner sections per domain:
 ```
 # Auto-generated by nurix CLI — DO NOT EDIT MANUALLY
 
-##########################
-########## ACRUX.LTD ##########
-##########################
-
-api.acrux.ltd {
-	reverse_proxy localhost:3000
-}
-
-app.acrux.ltd {
-	reverse_proxy localhost:8080
-}
-
-
 ##############################
 ########## SBKASHIF.COM ##########
 ##############################
@@ -576,68 +563,68 @@ Domains with no DNS records still appear as empty sections, keeping the structur
 
 ### domains
 
-| Column | Type | Description |
-|--------|------|-------------|
-| `id` | `SERIAL PRIMARY KEY` | Auto-incrementing ID |
-| `domain` | `VARCHAR(255) UNIQUE NOT NULL` | Domain name |
-| `provider` | `VARCHAR(255)` | Domain registrar |
-| `expiry` | `DATE NOT NULL` | Expiry date |
-| `created_by` | `VARCHAR(255)` | OS user who created the record |
-| `updated_by` | `VARCHAR(255)` | OS user who last updated the record |
-| `created_at` | `TIMESTAMPTZ` | Creation timestamp |
-| `updated_at` | `TIMESTAMPTZ` | Last update timestamp |
+| Column       | Type                           | Description                         |
+| ------------ | ------------------------------ | ----------------------------------- |
+| `id`         | `SERIAL PRIMARY KEY`           | Auto-incrementing ID                |
+| `domain`     | `VARCHAR(255) UNIQUE NOT NULL` | Domain name                         |
+| `provider`   | `VARCHAR(255)`                 | Domain registrar                    |
+| `expiry`     | `DATE NOT NULL`                | Expiry date                         |
+| `created_by` | `VARCHAR(255)`                 | OS user who created the record      |
+| `updated_by` | `VARCHAR(255)`                 | OS user who last updated the record |
+| `created_at` | `TIMESTAMPTZ`                  | Creation timestamp                  |
+| `updated_at` | `TIMESTAMPTZ`                  | Last update timestamp               |
 
 ### dns_records
 
-| Column | Type | Description |
-|--------|------|-------------|
-| `id` | `SERIAL PRIMARY KEY` | Auto-incrementing ID |
-| `owner` | `VARCHAR(255) UNIQUE NOT NULL` | Domain/subdomain |
-| `target` | `VARCHAR(255) NOT NULL` | Upstream target |
-| `domain_id` | `INTEGER NOT NULL REFERENCES domains(id)` | Parent domain FK |
-| `created_by` | `VARCHAR(255)` | OS user who created the record |
-| `updated_by` | `VARCHAR(255)` | OS user who last updated the record |
-| `created_at` | `TIMESTAMPTZ` | Creation timestamp |
-| `updated_at` | `TIMESTAMPTZ` | Last update timestamp |
+| Column       | Type                                      | Description                         |
+| ------------ | ----------------------------------------- | ----------------------------------- |
+| `id`         | `SERIAL PRIMARY KEY`                      | Auto-incrementing ID                |
+| `owner`      | `VARCHAR(255) UNIQUE NOT NULL`            | Domain/subdomain                    |
+| `target`     | `VARCHAR(255) NOT NULL`                   | Upstream target                     |
+| `domain_id`  | `INTEGER NOT NULL REFERENCES domains(id)` | Parent domain FK                    |
+| `created_by` | `VARCHAR(255)`                            | OS user who created the record      |
+| `updated_by` | `VARCHAR(255)`                            | OS user who last updated the record |
+| `created_at` | `TIMESTAMPTZ`                             | Creation timestamp                  |
+| `updated_at` | `TIMESTAMPTZ`                             | Last update timestamp               |
 
 ### changelog
 
-| Column | Type | Description |
-|--------|------|-------------|
-| `id` | `SERIAL PRIMARY KEY` | Auto-incrementing ID |
-| `entity_type` | `VARCHAR(50) NOT NULL` | `domain` or `dns_record` |
-| `entity_id` | `INTEGER NOT NULL` | ID of the affected record |
-| `action` | `VARCHAR(20) NOT NULL` | `CREATE`, `UPDATE`, or `DELETE` |
-| `field_name` | `VARCHAR(255)` | Which field changed |
-| `old_value` | `TEXT` | Previous value |
-| `new_value` | `TEXT` | New value |
-| `changed_by` | `VARCHAR(255)` | OS user who made the change |
-| `changed_at` | `TIMESTAMPTZ` | When the change occurred |
+| Column        | Type                   | Description                     |
+| ------------- | ---------------------- | ------------------------------- |
+| `id`          | `SERIAL PRIMARY KEY`   | Auto-incrementing ID            |
+| `entity_type` | `VARCHAR(50) NOT NULL` | `domain` or `dns_record`        |
+| `entity_id`   | `INTEGER NOT NULL`     | ID of the affected record       |
+| `action`      | `VARCHAR(20) NOT NULL` | `CREATE`, `UPDATE`, or `DELETE` |
+| `field_name`  | `VARCHAR(255)`         | Which field changed             |
+| `old_value`   | `TEXT`                 | Previous value                  |
+| `new_value`   | `TEXT`                 | New value                       |
+| `changed_by`  | `VARCHAR(255)`         | OS user who made the change     |
+| `changed_at`  | `TIMESTAMPTZ`          | When the change occurred        |
 
 ### schema_migrations
 
-| Column | Type | Description |
-|--------|------|-------------|
-| `version` | `INTEGER PRIMARY KEY` | Migration version number |
-| `description` | `VARCHAR(255)` | Human-readable description |
-| `applied_at` | `TIMESTAMPTZ` | When the migration was applied |
+| Column        | Type                  | Description                    |
+| ------------- | --------------------- | ------------------------------ |
+| `version`     | `INTEGER PRIMARY KEY` | Migration version number       |
+| `description` | `VARCHAR(255)`        | Human-readable description     |
+| `applied_at`  | `TIMESTAMPTZ`         | When the migration was applied |
 
 ---
 
 ## Validation Rules
 
-| Scenario | Result |
-|----------|--------|
-| `dns add` for unregistered domain | ❌ Blocked — register the domain first |
-| `dns add` for expired domain | ❌ Blocked — shows expiry date |
-| `dns update` for expired domain | ❌ Blocked — suggests removal instead |
-| `dns remove` for expired domain | ✅ Allowed — you can always clean up |
-| `domain remove` with existing DNS records | ❌ Blocked — lists records to clean up first |
-| `domain remove` with no DNS records | ✅ Allowed |
-| Any command before `set config` | ❌ Blocked — shows setup instructions |
-| Any DB command before `run db-migration` | ❌ Fails with DB error — user guided to run migrations |
-| `dns add` with duplicate owner | ❌ Blocked — owner must be unique |
-| `domain add` with duplicate domain | ❌ Blocked — domain must be unique |
+| Scenario                                  | Result                                                 |
+| ----------------------------------------- | ------------------------------------------------------ |
+| `dns add` for unregistered domain         | ❌ Blocked — register the domain first                 |
+| `dns add` for expired domain              | ❌ Blocked — shows expiry date                         |
+| `dns update` for expired domain           | ❌ Blocked — suggests removal instead                  |
+| `dns remove` for expired domain           | ✅ Allowed — you can always clean up                   |
+| `domain remove` with existing DNS records | ❌ Blocked — lists records to clean up first           |
+| `domain remove` with no DNS records       | ✅ Allowed                                             |
+| Any command before `set config`           | ❌ Blocked — shows setup instructions                  |
+| Any DB command before `run db-migration`  | ❌ Fails with DB error — user guided to run migrations |
+| `dns add` with duplicate owner            | ❌ Blocked — owner must be unique                      |
+| `domain add` with duplicate domain        | ❌ Blocked — domain must be unique                     |
 
 ---
 
@@ -650,18 +637,18 @@ Every change is recorded in the `changelog` table. You can query it directly:
 SELECT * FROM changelog ORDER BY changed_at DESC;
 
 -- See changes for a specific domain
-SELECT * FROM changelog 
-WHERE entity_type = 'domain' AND entity_id = 1 
+SELECT * FROM changelog
+WHERE entity_type = 'domain' AND entity_id = 1
 ORDER BY changed_at DESC;
 
 -- See all DNS record changes by a specific user
-SELECT * FROM changelog 
-WHERE entity_type = 'dns_record' AND changed_by = 'root' 
+SELECT * FROM changelog
+WHERE entity_type = 'dns_record' AND changed_by = 'root'
 ORDER BY changed_at DESC;
 
 -- See what changed today
-SELECT * FROM changelog 
-WHERE changed_at >= CURRENT_DATE 
+SELECT * FROM changelog
+WHERE changed_at >= CURRENT_DATE
 ORDER BY changed_at DESC;
 ```
 
@@ -683,11 +670,11 @@ id | entity_type | entity_id | action | field_name | old_value      | new_value 
 
 Configuration (including database password) is stored in your operating system's native credential manager:
 
-| OS | Backend |
-|----|---------|
-| macOS | Keychain |
-| Linux | Secret Service (GNOME Keyring / KWallet) |
-| Windows | Credential Manager |
+| OS      | Backend                                  |
+| ------- | ---------------------------------------- |
+| macOS   | Keychain                                 |
+| Linux   | Secret Service (GNOME Keyring / KWallet) |
+| Windows | Credential Manager                       |
 
 **No configuration files are written to disk.** The credentials exist only in the OS keyring.
 
@@ -841,17 +828,12 @@ nurix domain remove --domain example.com    # now this works
 
 ### Keyring issues on headless Linux servers
 
-If your Linux server doesn't have a desktop environment, the Secret Service backend may not be available. You have two options:
+If your Linux server doesn't have a desktop environment, the Secret Service backend (`go-keyring`) may not be available.
+In this case, Nurix automatically falls back to an encrypted configuration file stored at `~/.nurix/config.enc`.
 
-1. Install and configure `gnome-keyring` in headless mode:
+The file is encrypted using AES-GCM. The encryption key is derived securely from your machine's unique identifiers (hostname, user ID, and `/etc/machine-id`), ensuring that the credentials cannot be decrypted if the file is copied to another machine.
 
-   ```bash
-   sudo apt install gnome-keyring libsecret-1-0
-   dbus-run-session -- bash
-   echo 'your-password' | gnome-keyring-daemon --unlock
-   ```
-
-2. Use `gnome-keyring-daemon` with a PAM module for auto-unlock on login.
+No extra setup is required!
 
 ---
 
