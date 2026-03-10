@@ -148,6 +148,21 @@ CREATE DATABASE nurix;
 GRANT ALL PRIVILEGES ON DATABASE nurix TO your_user;
 ```
 
+### Open firewall ports for Caddy
+
+If your server uses `ufw`, allow HTTP and HTTPS traffic so Caddy can serve your sites:
+
+```bash
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+```
+
+Verify the rules were added:
+
+```bash
+sudo ufw status
+```
+
 ---
 
 ## Installation
